@@ -644,3 +644,25 @@ li {
 }
 
 /* #endregion UTILITY */
+/* #region MAIN */
+#container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom,
+            #1B9688 150px,
+            #DBDBD2 150px 100%);
+}
+
+.left-chat {
+    max-width: 300px;
+    width: 30%;
+    height: 90%;
+}
+
+.right-chat {
+    max-width: 700px;
+    width: 70%;
+    height: 90%;
+}
+
+/* #endregion MAIN */
