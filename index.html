@@ -68,56 +68,21 @@
 
                     <!-- contacts  -->
                     <div class="contacts">
-                        <div v-for="(contact, index) in contacts" class="contact d-flex justify-content-between pe-10">
-                            <div class="d-flex align-items-center">
-                                <div class="m-avatar-container rounded-50">
-                                    <img :src="getUserImage(index)" alt="avatar">
+                        <template v-for="(contact, index) in contacts">
+                            <div @click="showActiveChat(index)" class="contact d-flex justify-content-between pe-10">
+                                <div class="d-flex align-items-center">
+                                    <div class="m-avatar-container rounded-50">
+                                        <img :src="getUserImage(index)" alt="avatar">
+                                    </div>
+                                    <div>
+                                        <div class="ms-10">{{ contact.name }}</div>
+                                        <div class="subtitle ms-10">Ultimo messaggio inviato</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="ms-10">{{ contact.name }}</div>
-                                    <div class="subtitle ms-10">Ultimo messaggio inviato</div>
-                                </div>
+                                <div class="subtitle mt-20">time</div>
                             </div>
-                            <div class="subtitle mt-20">time</div>
-                        </div>
+                        </template>
 
-                        <!-- <img :src="'./img/avatar' + contact[index].avatar + '.jpg'" alt="avatar"> -->
-                        <!-- <div class="contact d-flex justify-content-between align-items-center pe-10">
-                            <div class="d-flex align-items-center">
-                                <div class="m-avatar-container rounded-50">
-                                    <img src="img/avatar_io.jpg" alt="avatar">
-                                </div>
-                                <div>
-                                    <div class="ms-10">Sofia</div>
-                                    <div class="subtitle ms-10">Ultimo messaggio inviato</div>
-                                </div>
-                            </div>
-                            <div class="subtitle">time</div>
-                        </div>
-                        <div class="contact d-flex justify-content-between align-items-center pe-10">
-                            <div class="d-flex align-items-center">
-                                <div class="m-avatar-container rounded-50">
-                                    <img src="img/avatar_io.jpg" alt="avatar">
-                                </div>
-                                <div>
-                                    <div class="ms-10">Sofia</div>
-                                    <div class="subtitle ms-10">Ultimo messaggio inviato</div>
-                                </div>
-                            </div>
-                            <div class="subtitle">time</div>
-                        </div>
-                        <div class="contact d-flex justify-content-between align-items-center pe-10">
-                            <div class="d-flex align-items-center">
-                                <div class="m-avatar-container rounded-50">
-                                    <img src="img/avatar_io.jpg" alt="avatar">
-                                </div>
-                                <div>
-                                    <div class="ms-10">Sofia</div>
-                                    <div class="subtitle ms-10">Ultimo messaggio inviato</div>
-                                </div>
-                            </div>
-                            <div class="subtitle">time</div>
-                        </div> -->
                     </div>
 
 
@@ -129,10 +94,10 @@
                     <div class="chat-header d-flex justify-content-between align-items-center px-10">
                         <div class="d-flex align-items-center">
                             <div class="h-avatar-container rounded-50">
-                                <img src="img/avatar_io.jpg" alt="avatar">
+                                <img :src="getUserImage(activeChat)" alt="avatar">
                             </div>
                             <div>
-                                <div class="ms-10">Sofia</div>
+                                <div class="ms-10">{{ contacts[activeChat].name }}</div>
                                 <div class="subtitle ms-10">Ultimo accesso di recente</div>
                             </div>
                         </div>
@@ -145,43 +110,14 @@
 
                     <!-- main chat  -->
                     <div class="main-chat d-flex flex-column">
-                        <!-- sent message  -->
-                        <div class="d-flex justify-content-end mb-10">
-                            <div class="text-message sent-message">
-                                <div class="pt-10 ps-10">mex</div>
-                                <div class="subtitle text-right pe-10">time</div>
+                        <!-- single message  -->
+                        <template v-for="(singleMessage, index) in contacts[activeChat].messages">
+                            <div :class="{'sent-message': singleMessage.status == 'sent', 'received-message': singleMessage.status == 'received'}"
+                                class="text-message mb-10">
+                                <div class="pt-10 ps-10">{{ singleMessage.message }}</div>
+                                <div class="subtitle text-right pe-10 pt-10">{{ singleMessage.date }}</div>
                             </div>
-                        </div>
-
-                        <!-- sent message  -->
-                        <div class="d-flex justify-content-end mb-10">
-                            <div class="text-message sent-message">
-                                <div class="pt-10 ps-10">mex</div>
-                                <div class="subtitle text-right pe-10">time</div>
-                            </div>
-                        </div>
-
-                        <!-- sent message  -->
-                        <div class="d-flex justify-content-end mb-10">
-                            <div class="text-message sent-message">
-                                <div class="pt-10 ps-10">mex</div>
-                                <div class="subtitle text-right pe-10">time</div>
-                            </div>
-                        </div>
-
-                        <!-- sent message  -->
-                        <div class="d-flex justify-content-end mb-20">
-                            <div class="text-message sent-message">
-                                <div class="pt-10 ps-10">mex</div>
-                                <div class="subtitle text-right pe-10">time</div>
-                            </div>
-                        </div>
-
-                        <!-- received message  -->
-                        <div class="text-message received-message">
-                            <div class="pt-10 ps-10">mex</div>
-                            <div class="subtitle text-right pe-10">time</div>
-                        </div>
+                        </template>
                     </div>
 
                     <!-- typing box  -->
@@ -194,12 +130,13 @@
                             <i class="fa-solid fa-microphone ps-10"></i>
                         </div>
                     </div>
-
                 </div>
 
             </div>
 
         </div>
+
+    </div>
     </div>
 
     <!-- my javascript  -->
