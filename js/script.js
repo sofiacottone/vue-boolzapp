@@ -6,7 +6,7 @@
 // - [✓] Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare tutti i messaggi relativi al contatto attivo all’interno del pannello della conversazione
 // - [✓] Click sul contatto mostra la conversazione del contatto cliccato
 // Milestone 3
-// - Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
+// - [✓] Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
 // - Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
 // Milestone 4
 // - Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
@@ -103,6 +103,7 @@ createApp({
       },
       ],
       activeChat: 0,
+      userText: '',
     };
   },
   methods: {
@@ -112,9 +113,31 @@ createApp({
     },
     showActiveChat(clickedIndex) {
       this.activeChat = clickedIndex;
+    },
+    printUserText(activeChat) {
+      const newText = {
+        date: '20/03/2020 16:30:00',
+        message: this.userText,
+        status: 'sent'
+      };
+      if (this.userText.length > 0) {
+        this.contacts[activeChat].messages.push(newText);
+        this.userText = '';
+        this.sendReply = setTimeout((this.receiveContactReply(activeChat)), 2000);
+      }
+    },
+    receiveContactReply(activeChat) {
+      const contactReply = {
+        date: '20/03/2020 16:30:00',
+        message: 'ok',
+        status: 'received'
+      };
+      console.log('sent');
+      this.contacts[activeChat].messages.push(contactReply);
     }
   },
   mounted() {
-    console.log(this.contacts[0].messages[0].message);
+    // console.log(this.contacts[activeChat].messages);
+    // console.log(userText);
   }
 }).mount('#app');

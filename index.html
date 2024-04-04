@@ -69,7 +69,8 @@
                     <!-- contacts  -->
                     <div class="contacts">
                         <template v-for="(contact, index) in contacts">
-                            <div @click="showActiveChat(index)" class="contact d-flex justify-content-between pe-10">
+                            <div @click="showActiveChat(index)" :class="[{'active-chat': index === activeChat}]"
+                                class="contact d-flex justify-content-between pe-10">
                                 <div class="d-flex align-items-center">
                                     <div class="m-avatar-container rounded-50">
                                         <img :src="getUserImage(index)" alt="avatar">
@@ -84,8 +85,6 @@
                         </template>
 
                     </div>
-
-
                 </div>
 
                 <!-- right chat  -->
@@ -125,7 +124,8 @@
                         <div>
                             <i class="fa-regular fa-face-smile pe-10"></i>
                         </div>
-                        <input type="text" class="px-10" placeholder="Scrivi un messaggio...">
+                        <input v-model="userText" @keyup.enter="printUserText(activeChat)" type="text" class="px-10"
+                            placeholder="Scrivi un messaggio...">
                         <div>
                             <i class="fa-solid fa-microphone ps-10"></i>
                         </div>
