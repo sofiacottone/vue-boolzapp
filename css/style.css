@@ -711,7 +711,6 @@ li {
 
 .icon-wrapper i {
     color: #b1b1b1;
-    padding-right: 20px;
     cursor: pointer;
 }
 
@@ -800,6 +799,18 @@ li {
     border-radius: 6px;
 }
 
+.text-message:hover .fa-chevron-down {
+    display: block;
+}
+
+.icon-wrapper>.fa-chevron-down {
+    display: none;
+}
+
+.text-message .icon-wrapper {
+    position: relative;
+}
+
 .sent-message {
     background-color: var(--chat-green);
     margin-left: auto;
@@ -807,6 +818,19 @@ li {
 
 .received-message {
     background-color: #fff;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0px;
+    top: 20px;
+    background-color: #fff;
+    min-width: 160px;
+    cursor: pointer;
+}
+
+.dropdown>div:hover {
+    background-color: var(--main-beige);
 }
 
 /* typing box  */
