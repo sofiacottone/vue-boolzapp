@@ -104,6 +104,7 @@ createApp({
       ],
       activeChat: 0,
       userText: '',
+      contactSearch: ''
     };
   },
   methods: {
@@ -134,8 +135,33 @@ createApp({
       };
       console.log('sent');
       this.contacts[activeChat].messages.push(contactReply);
+    },
+    searchContact() {
+      this.contacts.forEach((name, index) => {
+        if (!this.contacts[index].name.toLowerCase().includes(this.contactSearch.toLowerCase())) {
+          this.contacts[index].visible = false;
+          console.log(this.contacts[index].visible);
+        } else {
+          this.contacts[index].visible = true;
+        }
+
+      });
     }
   },
   mounted() {
+    console.log(this.contacts[0].visible);
   }
 }).mount('#app');
+
+// - Ricerca utenti: scrivendo qualcosa nell’input a sinistra, 
+// vengono visualizzati solo i contatti il cui nome contiene le lettere inserite 
+// (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
+
+// confronto quello che cerca l'utente con i vari nomi e rendo visible solo quelli che includono i caratteri cercati
+
+// if (list.pokemon[i].name.toLowerCase().includes(userSearch.toLowerCase())) {
+//   pokemonFound.push(list.pokemon[i])
+//   // e rigenero le singole card
+//   generatorCard (list.pokemon[i])
+
+// }

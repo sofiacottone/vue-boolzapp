@@ -63,15 +63,16 @@
                         <div class="col-20 text-center px-10">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <input v-model="contactSearch" type="text" class="col-80 px-10"
+                        <input v-model="contactSearch" @keyup="searchContact()" type="text" class="col-80 px-10"
                             placeholder="Cerca o inizia una nuova chat">
                     </div>
 
                     <!-- contacts  -->
                     <div class="contacts">
                         <template v-for="(contact, index) in contacts">
-                            <div @click="showActiveChat(index)" :class="[{'active-chat': index === activeChat}]"
-                                class="contact d-flex justify-content-between pe-10">
+                            <div @click="showActiveChat(index)"
+                                :class="[{'active-chat': index === activeChat}, contact.visible == true ? 'd-flex' : 'd-none']"
+                                class="contact justify-content-between pe-10">
                                 <div class="d-flex align-items-center">
                                     <div class="m-avatar-container rounded-50">
                                         <img :src="getUserImage(index)" alt="avatar">
