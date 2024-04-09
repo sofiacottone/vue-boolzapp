@@ -82,9 +82,9 @@
                                     </div>
                                     <div>
                                         <div class="ms-10">{{ contact.name }}</div>
+                                        <!-- ultimo messaggio inviato -->
                                         <div class="subtitle ms-10"> {{ contact.messages[contact.messages.length
                                             -1].message }} </div>
-                                        <!-- <div class="subtitle ms-10">Ultimo messaggio inviato</div> -->
                                     </div>
                                 </div>
                                 <div class="subtitle mt-20">time</div>
@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="subtitle text-right pe-10 pt-10">{{ getCurrentDate() }}</div>
+                                <div class="subtitle text-right pe-10 pt-10">{{ singleMessage.date }}</div>
                             </div>
                         </template>
                     </div>

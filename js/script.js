@@ -11,9 +11,9 @@
 // Milestone 4 [✓]
 // - [✓] Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 // BONUS:
-// Milestone 5
+// Milestone 5 [✓]
 // - [✓] Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
-// - Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
+// - [✓] Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
 
 //#endregion
 
@@ -107,7 +107,6 @@ createApp({
       userText: '',
       contactSearch: '',
       activeMessage: null,
-      date: ''
     };
   },
   methods: {
@@ -121,7 +120,7 @@ createApp({
     },
     printUserText(activeChat) {
       const newText = {
-        date: '20/03/2020 16:30:00',
+        date: DateTime.now().setLocale('it').toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
         message: this.userText,
         status: 'sent'
       };
@@ -133,7 +132,7 @@ createApp({
     },
     receiveContactReply(activeChat) {
       const contactReply = {
-        date: '20/03/2020 16:30:00',
+        date: DateTime.now().setLocale('fr').toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
         message: 'ok',
         status: 'received'
       };
@@ -154,13 +153,9 @@ createApp({
     deleteMessage(clickedIndex) {
       this.contacts[this.activeChat].messages.splice(clickedIndex, 1)
       this.activeMessage = null;
-    },
-    getCurrentDate() {
-      this.date = DateTime.now().setLocale('it').toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS);
-      return this.date;
     }
   },
   mounted() {
-    console.log(this.date);
+    // console.log(this.date);
   }
 }).mount('#app');
