@@ -12,12 +12,13 @@
 // - [✓] Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 // BONUS:
 // Milestone 5
-// - Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
+// - [✓] Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
 // - Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
 
 //#endregion
 
 const { createApp } = Vue;
+const DateTime = luxon.DateTime;
 
 createApp({
   data() {
@@ -105,8 +106,8 @@ createApp({
       activeChat: 0,
       userText: '',
       contactSearch: '',
-      isDropdownOpen: false,
-      activeMessage: null
+      activeMessage: null,
+      date: ''
     };
   },
   methods: {
@@ -116,6 +117,7 @@ createApp({
     },
     showActiveChat(clickedIndex) {
       this.activeChat = clickedIndex;
+      this.activeMessage = null;
     },
     printUserText(activeChat) {
       const newText = {
@@ -146,15 +148,19 @@ createApp({
         }
       });
     },
-    activeDropdown(singleMessage, message, clickedIndex) {
-      this.activeMessage = clickedIndex;
-      console.log(clickedIndex, this.activeMessage);
-      if (clickedIndex == this.activeMessage) {
-        this.isDropdownOpen = true;
-      }
+    activeDropdown(singleMessage, clickedIndex) {
+      this.activeMessage = (this.activeMessage === clickedIndex) ? null : clickedIndex;
+    },
+    deleteMessage(clickedIndex) {
+      this.contacts[this.activeChat].messages.splice(clickedIndex, 1)
+      this.activeMessage = null;
+    },
+    getCurrentDate() {
+      this.date = DateTime.now().setLocale('it').toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS);
+      return this.date;
     }
   },
   mounted() {
-    console.log(this.isDropdownOpen);
+    console.log(this.date);
   }
 }).mount('#app');

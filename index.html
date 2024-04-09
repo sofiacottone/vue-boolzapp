@@ -23,6 +23,9 @@
     <!-- my style  -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- luxon  -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
     <title>Boolzapp</title>
 </head>
 
@@ -74,12 +77,14 @@
                                 :class="[{'active-chat': index === activeChat}, contact.visible == true ? 'd-flex' : 'd-none']"
                                 class="contact justify-content-between pe-10">
                                 <div class="d-flex align-items-center">
-                                    <div class="m-avatar-container rounded-50">
+                                    <div class="m-avatar-container rounded-50 me-10">
                                         <img :src="getUserImage(index)" alt="avatar">
                                     </div>
                                     <div>
                                         <div class="ms-10">{{ contact.name }}</div>
-                                        <div class="subtitle ms-10">Ultimo messaggio inviato</div>
+                                        <div class="subtitle ms-10"> {{ contact.messages[contact.messages.length
+                                            -1].message }} </div>
+                                        <!-- <div class="subtitle ms-10">Ultimo messaggio inviato</div> -->
                                     </div>
                                 </div>
                                 <div class="subtitle mt-20">time</div>
@@ -120,19 +125,19 @@
                                         {{ singleMessage.message }}
                                     </div>
                                     <div class="icon-wrapper">
-                                        <i @click="activeDropdown(singleMessage, message, index)"
+                                        <i @click="activeDropdown(singleMessage, index)"
                                             class="fa-solid fa-chevron-down"></i>
-                                        <div class="dropdown" :class="[isDropdownOpen == true ? 'd-block' : 'd-none']">
+                                        <div class="dropdown" v-if="activeMessage === index">
                                             <div class="py-20 px-20">Message info</div>
-                                            <div class="py-20 px-20">Delete message</div>
+                                            <div @click="deleteMessage(index)" class="py-20 px-20">Delete
+                                                message</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="subtitle text-right pe-10 pt-10">{{ singleMessage.date }}</div>
+                                <div class="subtitle text-right pe-10 pt-10">{{ getCurrentDate() }}</div>
                             </div>
                         </template>
                     </div>
-
                     <!-- typing box  -->
                     <div class="typing-box d-flex justify-content-between align-items-center px-20">
                         <div>
