@@ -4,10 +4,10 @@
 
 ---
 
-I created a messaging web app
+I created a messaging web app with Vue.js.
 
-Preview at: https://sofiacottone.github.io/vue-email-list/index.html
+Try it at: https://sofiacottone.github.io/vue-email-list/index.html
 
 ---
 
-![!\[alt text\](<Screenshot 2024-04-09 alle 18.07.00.png>)](preview.png)
+![!\[!\\[alt text\\](<Screenshot 2024-04-09 alle 18.07.00.png>)\](preview.png)](preview.png)
