@@ -10,4 +10,4 @@ Preview at: https://sofiacottone.github.io/vue-email-list/index.html
 
 ---
 
-![alt text](<Screenshot 2024-04-09 alle 18.07.00.png>)
+![!\[alt text\](<Screenshot 2024-04-09 alle 18.07.00.png>)](preview.png)
