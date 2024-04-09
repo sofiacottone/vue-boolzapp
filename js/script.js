@@ -120,7 +120,7 @@ createApp({
     },
     printUserText(activeChat) {
       const newText = {
-        date: DateTime.now().setLocale('it').toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        date: DateTime.now().setLocale('fr').toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
         message: this.userText,
         status: 'sent'
       };
