@@ -702,6 +702,7 @@ li {
     width: 3.125rem;
     height: 3.125rem;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .subtitle {
