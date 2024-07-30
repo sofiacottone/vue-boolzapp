@@ -6,7 +6,7 @@
 
 I created a messaging web app with Vue.js.
 
-Try it at: https://sofiacottone.github.io/vue-email-list/index.html
+Try it [here](https://sofiacottone.github.io/vue-boolzapp/)
 
 ---
 
